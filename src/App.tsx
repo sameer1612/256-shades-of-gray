@@ -4,7 +4,7 @@ import CanvasComponent from "./components/canvas";
 import { FormComponent } from "./components/form";
 
 function App() {
-  const [size, setSize] = useState(512);
+  const [size, setSize] = useState(window.innerWidth > 600 ? 512 : 256);
   const [formula, setFormula] = useState("x * y");
 
   const createCanvas = (size: number, formula: string) => {
