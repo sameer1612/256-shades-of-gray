@@ -6,7 +6,7 @@ interface FormComponentProps {
 }
 
 export function FormComponent(props: FormComponentProps) {
-  const [size, setSize] = useState(512);
+  const [size, setSize] = useState(window.innerWidth > 600 ? 512 : 256);
   const [formula, setFormula] = useState("x * y");
 
   function handleSubmit() {
