@@ -1,17 +1,13 @@
 import { useState } from "react";
 
 interface FormComponentProps {
-  setSize: (size: number) => void;
   setFormula: (formula: string) => void;
 }
 
 export function FormComponent(props: FormComponentProps) {
-  const [size, setSize] = useState(window.innerWidth > 600 ? 512 : 256);
   const [formula, setFormula] = useState("x * y");
 
   function handleSubmit() {
-    props.setSize(size);
-
     try {
       // @ts-ignore: Check formula validity
       const [x, y] = [0, 0];
@@ -25,31 +21,22 @@ export function FormComponent(props: FormComponentProps) {
 
   return (
     <>
-      <div className="row mx-auto">
-        <div className="wrapper">
-          <small className="text-muted">Image size (px)</small>
-          <input
-            type="number"
-            className="form-control mb-2"
-            placeholder="Size (px)"
-            value={size}
-            onChange={(e) => setSize(parseInt(e.target.value))}
-          />
-          <small className="text-muted mt-2">Relation between x and y</small>
-          <input
-            type="text"
-            name="formula"
-            className="form-control mb-4"
-            placeholder="Relation between x and y"
-            value={formula}
-            onChange={(e) => setFormula(e.target.value)}
-          />
-          <div className="text-center">
-            <button className="btn btn-outline-primary" onClick={handleSubmit}>
-              Generate Image
-            </button>
-          </div>
-        </div>
+      <small className="text-muted mt-2">Relation between x and y</small>
+      <div className="d-flex mx-auto mb-4">
+        <input
+          type="text"
+          name="formula"
+          className="form-control"
+          placeholder="Relation between x and y"
+          value={formula}
+          onChange={(e) => setFormula(e.target.value)}
+        />
+        <button
+          className="btn btn-outline-info text-nowrap ms-2"
+          onClick={handleSubmit}
+        >
+          Generate Image
+        </button>
       </div>
     </>
   );
